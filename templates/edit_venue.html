@@ -1,0 +1,25 @@
+{% extends "layout2.html" %}
+
+{% block title %}Edit Venue{% endblock %}
+
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename = 'css/style.css') }}">{% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+    <h1>Edit Venue</h1>
+	<div class="form-container">
+		<form method = "post" action="/edit_venue/{{ venues['venue_id'] }}">
+            <input type="text" placeholder="Venue Name" name = "venue_name" value = "{{ venues['venue_name'] }}" required/>
+			<input type="text" placeholder="Place" name = "place" value = "{{ venues['venue_place'] }}" required/>
+            <input type="text" placeholder="Location" name = "location" value = "{{ venues['venue_location'] }}" required/>
+            <input type="number" placeholder="Capacity" name = "capacity" value = "{{ venues['venue_capacity'] }}" required/>
+			<button>Save Venue</button>
+		</form>
+	</div>
+</div>
+
+
+
+{% endblock %}

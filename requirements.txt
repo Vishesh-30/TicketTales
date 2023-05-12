@@ -1,0 +1,7 @@
+flask
+flask_sqlalchemy
+flask_restful
+flask_cors
+werkzeug.exceptions
+json
+requests

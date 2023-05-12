@@ -1,0 +1,27 @@
+{% extends "layout2.html" %}
+
+{% block title %}Edit Show{% endblock %}
+
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename = 'css/style.css') }}">{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Edit Show</h1>
+	<div class="form-container">
+		<form method = "post" action="/edit_show/{{shows['show_id']}}">
+            <input type="text" placeholder="Show Name" name = "show_name" value = "{{shows['show_name']}}" required/>
+			<input type="date" placeholder="Date" name = "show_date" value = "{{shows['show_date']}}" required/>
+			<input type="time" placeholder="Time" name = "show_time" value = "{{shows['show_time']}}" required/>
+			<input type="text" placeholder="Tags" name = "show_tag" value = "{{shows['show_tag']}}" required/>
+			<input type="number" step="any" min="0" max="5" placeholder="Rating" name = "show_rating" value = "{{shows['show_rating']}}" required/>
+            <input type="number" placeholder="Price" name = "show_price" value = "{{shows['show_price']}}" required/>
+			<input type="number" placeholder="Venue" name = "show_venue" value = "{{shows['show_venue']}}" required/>
+			<button>Save Show</button>
+		</form>
+	</div>
+</div>
+
+
+
+{% endblock %}

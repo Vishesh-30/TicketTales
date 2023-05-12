@@ -1,0 +1,51 @@
+{% extends "layout2.html" %}
+
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename = 'css/style.css') }}">{% endblock %}
+
+{% block title %}Invoice{% endblock %}
+
+{% block body %}
+<div class = "invoice">
+    <h1>Invoice</h1>
+    <img src = "{{ url_for('static', filename = 'img/sampleQR.png') }}" alt = "invoice">
+    <div class = "invoice-details">
+        <table>
+            <tr>
+                <td><b>Booking ID:</b></td>
+                <td>{{ booking['booking_id'] }}</td>
+            </tr>
+            <tr>
+                <td><b>Email:</b></td>
+                <td>{{ booking['booking_user'] }}</td>
+            </tr>
+            <tr>
+                <td><b>Booking Date:</b></td>
+                <td>{{ show['show_date'] }}</td>
+            </tr>
+            <tr>
+                <td><b>Booking Time:</b></td>
+                <td>{{ show['show_time'] }}</td>
+            </tr>
+            <tr>
+                <td><b>Booking Venue:</b></td>
+                <td>{{ booking['venue_name'] }}</td>
+            </tr>
+            <tr>
+                <td><b>Booking Show:</b></td>
+                <td>{{ booking['show_name'] }}</td>
+            </tr>
+            <tr>
+                <td><b>Number of Tickets:</b></td>
+                <td>{{ booking['num_tickets'] }}</td>
+            </tr>
+            <tr>
+                <td><b>Total Price:</b></td>
+                <td>{{ booking['total__price'] }}</td>
+            </tr>
+        </table>
+        </table>
+        <a href = "/delete_booking/{{booking['booking_id']}}"><button style="margin-top: 20px;">Cancel Booking</button></a>
+    </div>
+    </div>
+</div>
+{% endblock %}

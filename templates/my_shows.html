@@ -1,0 +1,65 @@
+{% extends "layout2.html" %}
+
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename = 'css/home.css') }}">{% endblock %}
+
+{% block title %}My Shows{% endblock %}
+
+{% block body %}
+
+<h1>My Shows</h1>
+<div class = "container-2">
+    <div class = "shows">
+        <h2>My Shows</h2>
+        <div class = "show">
+            <div>
+                <form class = "enter-email" method="post">
+                    <input type = "text" onload="loadEmail()" name = "user_email" placeholder = "Enter your email" required>
+                    <button type = "submit" name = "submit">Submit</button>
+                </form>
+            </div>
+            
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Booking User</th>
+                        <th>Booking Venue</th>
+                        <th>Booking Show</th>
+                        <th>Number of Tickets</th>
+                        <th>Total Price</th>
+                        <th>Invoice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in booking %}
+                    <tr>
+                        <td>{{ booking['booking_id'] }}</td>
+                        <td>{{ booking['booking_user'] }}</td>
+                        <td>{{ booking['venue_name'] }}</td>
+                        <td>{{ booking['show_name'] }}</td>
+                        <td>{{ booking['num_tickets'] }}</td>
+                        <td>{{ booking['total__price'] }}</td>
+                        <td><a href ="/invoice/{{booking['booking_id']}}"><button class = "book-show">Invoice</button></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% if alert == 'No bookings found.' %}
+            <div class = "error">
+                <p>You have no bookings</p>
+            </div>
+        {% endif %}
+    </div>
+
+
+</div>
+
+
+<script>
+    console.log("loadEmail",localStorage.getItem("email"));
+    var email = document.getElementsByName("user_email")[0];
+    email.value = localStorage.getItem("email");
+</script>
+
+{% endblock %}
+

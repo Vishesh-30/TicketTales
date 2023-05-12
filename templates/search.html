@@ -1,0 +1,17 @@
+{% extends "layout2.html" %}
+
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename = 'css/home.css') }}">{% endblock %}
+
+{% block title %}Book Show{% endblock %}
+
+{% block body %}
+<h1>Showing results for '{{ searched }}'</h1>
+<div class = "container-2">
+    <div class ="search-results">
+        <h2>Venue Results</h2>
+        <a href = "/venue/{{ venueid }}"><p>{{ venue }}</p></a>
+        <h2>Show Results</h2>
+        <a href = "/venue/{{ showvenue }}"><p>{{ show }}</p></a>    
+    </div>
+</div>
+{% endblock %}

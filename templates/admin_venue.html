@@ -1,0 +1,63 @@
+{% extends "layout2.html" %}
+
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename = 'css/home.css') }}">{% endblock %}
+
+{% block title %}Admin Venue{% endblock %}
+
+
+{% block body %}
+<h1>Venue {{ venue['venue_id'] }}</h1>
+<div class = "venue-details">
+    <h2>{{ venue['venue_name'] }}</h2>
+    <p>Place: {{ venue['venue_place'] }}</p>
+    <p>Location: {{ venue['venue_location'] }}</p>
+    <p>Capacity: {{ venue['venue_capacity'] }}</p>
+</div>
+<div class="add-edit-btn">
+    <a href="/add_show"><button class = "Btn-2">Add Show</button></a>
+    <a href ="/edit_venue/{{venue['venue_id']}}"><button class = "Btn-2">Edit Venue</button></a>
+    <a href ="/delete_venue/{{venue['venue_id']}}"><button class = "Btn-2">Delete Venue</button></a>
+</div>
+<div class = "container-2">
+    <div class = "shows">
+        <h2>Available Shows</h2>
+        <div class = "show">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                    <tr>
+                        <th>Show ID</th>
+                        <th>Show Name</th>
+                        <th>Show Date</th>
+                        <th>Show Time</th>
+                        <th>Show Tag</th>
+                        <th>Show Rating</th>
+                        <th>Show Price</th>
+                        <th>Show Venue</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for show in show %}
+                    <tr>
+                        <td>{{ show['show_id'] }}</td>
+                        <td>{{ show['show_name'] }}</td>
+                        <td>{{ show['show_date'] }}</td>
+                        <td>{{ show['show_time'] }}</td>
+                        <td>{{ show['show_tag'] }}</td>
+                        <td>{{ show['show_rating'] }}</td>
+                        <td>{{ show['show_price'] }}</td>
+                        <td>{{ show['show_venue'] }}</td>
+                        <td class="icons"><a href="/edit_show/{{show['show_id']}}"><i class="fa-regular fa-pen-to-square icons"></i></a> <a href="/delete_show/{{show['show_id']}}"><i class="fa-regular fa-trash-can icons"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+        </div>
+        {% if show|length == 0 %}
+        <div class="error">
+            <p>There are no shows available for this venue</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

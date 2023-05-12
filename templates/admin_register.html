@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block admin_login %}
+<li><a href="/login">User Login</a></li>
+{% endblock %}
+
+{% block title %}Ticket Tales{% endblock %}
+
+{% block body %}
+
+
+
+<div class="container" id="container">
+	<div class="form-container sign-in-container">
+		<form method = "post" action="/admin_register">
+			<h1>Create Admin Account</h1>
+            <input type="name" placeholder="Name" name = "Name" required/>
+            <input type="email" placeholder="Email" name = "Email" id="email" required/>
+			<input type="password" placeholder="Password" name = "Password" id="password" required/>
+			<button>Register</button>
+		</form>
+	</div>
+	{% if error == 'Admin already exists, Please login.' %}
+		<div class = "error">
+			<p>{{ error }}</p>
+		</div>
+	{% endif %}
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-right">
+				<h1>Login</h1>
+                <p>Already have an admin account?</p>
+				<a href="/admin_login"><button class="btn" >Login</button></a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

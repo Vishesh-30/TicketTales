@@ -1,0 +1,54 @@
+{% extends "layout2.html" %}
+
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename = 'css/style.css') }}">{% endblock %}
+
+{% block title %}Book Show{% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+    <h1>Book Show</h1><br>
+    <p>Show Details: {{ show['show_name'] }}</p>
+    <p>Rating: {{ show['show_rating'] }}</p>
+    <p>Timing: {{ show['show_date'] }}, {{ show['show_time'] }}</p>
+    <p>Available Seats: {{ capacity }} </p>
+    {% if capacity == 0 %}
+        <div class = "housefull">
+            <h3>House Full</h3>
+        </div>
+        <div class="error">
+            <p>Sorry, no seats available</p>
+        </div>
+    {% else %}
+    
+        {% if Alert %}
+        <div class="error">
+            <p>{{ Alert }}</p>
+        {% endif %}
+
+	<div class="book-show">
+		<form method="post", action="/book_show/{{show['show_id']}}">
+            <input type="text" placeholder="User email" onload="loadEmail()" name = "booking_user" required/>
+            <input type="number" placeholder="Price" name = "price" value="{{price}}" disabled />
+            <input type="number" placeholder="Number of Seats" onchange="changePrice(this)" name = "num_tickets" required/>
+            <input type="number" placeholder="Total Price" name = "total__price" required />
+			<button>Confirm Booking</button>
+		</form>
+	</div>
+    {% endif %}
+</div>
+<script>
+    console.log("loadEmail",localStorage.getItem("email"));
+    var email = document.getElementsByName("booking_user")[0];
+    email.value = localStorage.getItem("email");
+
+    function changePrice(input) {
+        var price = document.getElementsByName("price")[0].value;
+        var total_price = document.getElementsByName("total__price")[0];
+        total_price.value = price * input.value;
+    }
+</script>
+
+
+{% endblock %}

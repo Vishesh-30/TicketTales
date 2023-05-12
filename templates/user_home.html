@@ -1,0 +1,31 @@
+{% extends "layout2.html" %}
+
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename = 'css/home.css') }}">{% endblock %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+<div class = "box">
+{% for venue in venue %}
+<a href ="/venue/{{ venue['venue_id'] }}">
+<h1>Venue {{ venue['venue_id'] }}</h1>
+
+<div class="container">
+    <div class="venue">
+        <div class="venue-info">
+            <h2>{{ venue['venue_name'] }}</h2>
+            <p>Place: {{ venue['venue_place'] }}</p>
+            <p>Location: {{ venue['venue_location'] }}</p>
+            <p>Capacity: {{ venue['venue_capacity'] }}</p>
+        </div>
+    </div>
+</div>
+</a>
+{% endfor %}
+</div>
+
+
+
+
+{% endblock %}

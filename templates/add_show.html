@@ -1,0 +1,38 @@
+{% extends "layout2.html" %}
+
+{% block title %}Add Show{% endblock %}
+
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename = 'css/style.css') }}">{% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+    <h1>Add Show</h1>
+	<div class="form-container">
+		<form method = "post" action="/add_show">
+            <input type="text" placeholder="Show Name" name = "show_name" required/>
+			<input type="date" placeholder="Date" name = "show_date" required/>
+			<input type="time" placeholder="Time" name = "show_time" required/>
+			<input type="text" placeholder="Tags" name = "show_tag" required/>
+			<input type="number" step="any" min="0" max="5" placeholder="Rating" name = "show_rating" required/>
+            <input type="number" placeholder="Price" name = "show_price" required/>
+			<input type="number" placeholder="Venue" name = "show_venue" required/>
+			<button>Add Show</button>
+		</form>
+	</div>
+	{% if alert == 'Show added successfully.' %}
+		<div class = "success">
+			<p>{{ alert }}</p>
+		</div>
+	{% endif %}
+	{% if alert == 'Show already exists.' %}
+		<div class = "error">
+			<p>{{ alert }}</p>
+		</div>
+	{% endif %}
+</div>
+
+
+
+{% endblock %}

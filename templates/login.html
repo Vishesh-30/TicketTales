@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block admin_login %}
+<li><a href="/admin_login">Admin Login</a></li>
+{% endblock %}
+
+{% block title %}Ticket Tales{% endblock %}
+
+{% block body %}
+
+
+
+<div class="container" id="container">
+	<div class="form-container sign-in-container">
+		<form method = "post" action="/login">
+			<h1>Sign In</h1>
+            <input type="email" placeholder="Email" name = "Email" id="email" required/>
+			<input type="password" placeholder="Password" name = "Password" id="password" required/>
+			<button onclick="saveValue()">Sign In</button>
+		</form>
+	</div>
+	{% if error == 'Invalid Credentials. Please try again.' %}
+		<div class = "error">
+			<p>{{ error }}</p>
+		</div>
+	{% endif %}
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-right">
+				<h1>Create Account</h1>
+				<p>Get your Tickets done in no time with Ticket Tales!</p>
+				<a href="/"><button class="btn">Register</button></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+

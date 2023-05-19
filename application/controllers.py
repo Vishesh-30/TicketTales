@@ -3,10 +3,13 @@ from main import app, db, Base_url, api
 from flask import current_app as app
 from application.models import *
 import requests
-
-
-
-
+from application.graphs import *
+import os
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+import io
+import base64
 
 
 
@@ -287,3 +290,41 @@ def delete_booking(booking_id):
 @app.route('/about', methods=['GET', 'POST'])
 def about():
     return render_template('about.html')
+
+
+@app.route('/venueperformance', methods=['GET', 'POST'])
+def venueperformance():
+
+    plot = ticketCount()
+
+    fig = Figure(figsize=(12, 6),facecolor='none')
+    axis = fig.add_subplot(1, 1, 1)
+
+    axis.bar(plot['show_name_y'], plot['num_tickets'],color='white')
+    axis.set_title('Ticket Count')
+    axis.set_xlabel('Shows')
+    axis.set_ylabel('Ticket Count')
+    axis.set_facecolor('none')
+    
+
+
+    fig2 = Figure(figsize=(12, 6),facecolor='none')
+    axis2 = fig2.add_subplot(1, 1, 1)
+    axis2.bar(plot['venue_name_y'], plot['total__price'],color='white')
+    axis2.set_title('Revenue')
+    axis2.set_xlabel('Venue')
+    axis2.set_ylabel('Revenue')
+    axis2.set_facecolor('none')
+
+
+    canvas = FigureCanvas(fig)
+    canvas2 = FigureCanvas(fig2)
+    output = io.BytesIO()
+    output2 = io.BytesIO()
+    canvas.print_png(output)
+    canvas2.print_png(output2)
+
+    plot_img  = base64.b64encode(output.getvalue()).decode('utf8')
+    plot_img2  = base64.b64encode(output2.getvalue()).decode('utf8')
+
+    return render_template('venueperformance.html', plot_img=plot_img, plot_img2=plot_img2)

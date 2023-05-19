@@ -1,0 +1,14 @@
+{% extends "admin-nav.html" %}
+
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename = 'css/home.css') }}">{% endblock %}
+
+{% block title %}Venue Performance{% endblock %}
+
+{% block body %}
+
+<div id = "plot">
+    <img src="data:image/png;base64,{{ plot_img }}" alt="Ticket-Plot">
+    <img src="data:image/png;base64,{{ plot_img2 }}" alt="Revenue-Plot">
+</div>
+
+{% endblock %}

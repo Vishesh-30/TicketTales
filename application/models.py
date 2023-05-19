@@ -57,5 +57,5 @@ class bookings(db.Model):
     booking_show = db.Column(db.Integer(), db.ForeignKey('shows.show_id'))
     num_tickets = db.Column(db.Integer(), nullable = False)
     total__price = db.Column(db.Integer(), nullable = False)
-    venue_name = db.Column(db.String(50), nullable = False)
-    show_name = db.Column(db.String(50), nullable = False)
+    venue_name = db.Column(db.String(50), db.ForeignKey('venues.venue_name'))
+    show_name = db.Column(db.String(50), db.ForeignKey('shows.show_name'))

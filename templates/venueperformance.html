@@ -6,9 +6,13 @@
 
 {% block body %}
 
-<div id = "plot">
-    <img src="data:image/png;base64,{{ plot_img }}" alt="Ticket-Plot">
+<div class = "plot">
+    <h1>Revenue per Venue</h1>
     <img src="data:image/png;base64,{{ plot_img2 }}" alt="Revenue-Plot">
+    <br>
+    <br>
+    <h1>Total Tickets booked per show</h1>
+    <img src="data:image/png;base64,{{ plot_img }}" alt="Ticket-Plot">
 </div>
 
 {% endblock %}
